@@ -1,0 +1,18 @@
+<launch>
+  	<arg name="record_clock"   default="true" />
+  	
+  	<arg name="topics" default="/ladybug5/camera4/raw_rect/selected
+							    /ladybug5/camera4/raw_rect/selected_info
+							    /velodyne/cloud/selected
+							    /tf
+							    " />
+	<node pkg="rosbag" type="record" name="rosbag_record_clock" args="-o /tmp/rosbag/clock /clock" if="$(arg record_clock)" />
+
+ 	<node pkg="rosbag" type="record" name="rosbag_record_thesis" args="-o /tmp/rosbag/cam4_points $(arg topics)" />
+       
+	<include file="$(find play)/launch/bag.launch">
+    	<arg name="tf_calibration" value="false" />
+	</include>
+
+	
+</launch>
