@@ -1,0 +1,61 @@
+<launch>
+	<arg name="sync_topic"						default="/velodyne/cloud" />
+	<arg name="subscribe_topics_pcl"			default="[/velodyne/cloud, /cloud_aggregator/add, /velodyne/cloud/filtred]" />
+	<arg name="pcl_frame_ids" 					default="[ladybug_camera0_rotated, ladybug_camera0_rotated, ladybug_camera0_rotated]" /> 	
+	
+	<arg name="raw_image_list" 		default =  "/ladybug5/camera0/image_raw, /ladybug5/camera1/image_raw, 
+												/ladybug5/camera2/image_raw, /ladybug5/camera3/image_raw, 
+												/ladybug5/camera4/image_raw, /ladybug5/camera5/image_raw" />
+	
+	<arg name="raw_image_info_list"	default =  "/ladybug5/camera0/image_raw_info, /ladybug5/camera1/image_raw_info, 
+												/ladybug5/camera2/image_raw_info, /ladybug5/camera3/image_raw_info,
+												/ladybug5/camera4/image_raw_info, /ladybug5/camera5/image_raw_info" />
+												
+	<arg name="subscribe_topics_image"			default="[/ladybug5/camera0/image_color_rect,
+														  /ladybug5/camera1/image_color_rect,
+														  /ladybug5/camera2/image_color_rect,
+														  /ladybug5/camera3/image_color_rect,
+														  /ladybug5/camera4/image_color_rect,
+														  /ladybug5/camera5/image_color_rect]" />
+												
+	<arg name="subscribe_topics_image_info"     default="[/ladybug5/camera0/image_color_rect_info,
+														  /ladybug5/camera1/image_color_rect_info,
+														  /ladybug5/camera2/image_color_rect_info,
+														  /ladybug5/camera3/image_color_rect_info,
+														  /ladybug5/camera4/image_color_rect_info,
+														  /ladybug5/camera5/image_color_rect_info]" />
+														  
+	<arg name="camera_frame_ids" 				default="[]"/>
+														 
+	<arg name="name"							default="kitti_export" />
+	
+	<arg name="publish_topic"					default="/kitti/sync" />
+	<arg name="data_prefix"						default="/media/Daten/kitti/barney/graz/0001/"/>
+	<arg name="sequence"						default="0" />
+	<arg name="tf_buffer_length"				default="30"/>
+	<arg name="queue_size"						default="130" />
+	<arg name="enabled"							default="1" />
+	<arg name="nodelet_manager"					default="/ladybug_nodelet_manager" />
+    
+    
+    <include file="$(find kitti)/launch/extract_nodelet.launch" >
+    	<arg name="nodelet_manager"					value="$(arg nodelet_manager)" />
+    	<arg name="subscribe_topics_pcl" 			value="$(arg subscribe_topics_pcl)" />
+	  	<arg name="pcl_frame_ids"					value="$(arg pcl_frame_ids)"	/>  	
+	  
+	  	<arg name="subscribe_topics_image" 			value="$(arg subscribe_topics_image)" />
+	  	<arg name="subscribe_topics_image_info"  	value="$(arg subscribe_topics_image_info)" />
+	  	<arg name="camera_frame_ids" 				value="$(arg camera_frame_ids)" />
+	  	
+	  	<arg name="sync_topic"  					value="$(arg sync_topic)" />
+	  	<arg name="publish_topic"					value="$(arg publish_topic)"	/>  
+	  	
+	  	<arg name="data_prefix" 					value="$(arg data_prefix)" />
+	  	<arg name="sequence" 						value="$(arg sequence)" />
+	  	
+	  	<arg name="tf_buffer_length"  				value="$(arg tf_buffer_length)" />
+	  	<arg name="queue_size"						value="$(arg queue_size)"	/>
+	  	
+	  	<arg name="enabled" 						value="$(arg enabled)" />
+    </include>  
+</launch>
