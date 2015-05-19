@@ -16,21 +16,24 @@
 														  /ladybug5/camera2/image_color_rect,
 														  /ladybug5/camera3/image_color_rect,
 														  /ladybug5/camera4/image_color_rect,
-														  /ladybug5/camera5/image_color_rect]" />
+														  /ladybug5/camera5/image_color_rect,
+														  $(arg raw_image_list)]" />
 												
 	<arg name="subscribe_topics_image_info"     default="[/ladybug5/camera0/image_color_rect_info,
 														  /ladybug5/camera1/image_color_rect_info,
 														  /ladybug5/camera2/image_color_rect_info,
 														  /ladybug5/camera3/image_color_rect_info,
 														  /ladybug5/camera4/image_color_rect_info,
-														  /ladybug5/camera5/image_color_rect_info]" />
+														  /ladybug5/camera5/image_color_rect_info,
+														  $(arg raw_image_info_list)
+														  ]" />
 														  
 	<arg name="camera_frame_ids" 				default="[]"/>
 														 
 	<arg name="name"							default="kitti_export" />
 	
 	<arg name="publish_topic"					default="/kitti/sync" />
-	<arg name="data_prefix"						default="/media/Daten/kitti/barney/graz/0001/"/>
+	<arg name="data_prefix"						default="/media/Daten/kitti/barney/hit/0001/"/>
 	<arg name="sequence"						default="0" />
 	<arg name="tf_buffer_length"				default="30"/>
 	<arg name="queue_size"						default="130" />
